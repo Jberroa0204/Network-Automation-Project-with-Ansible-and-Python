@@ -1,0 +1,16 @@
+- name: Run show commands on Cisco Devices
+  hosts: sandbox-iosxe-latest-1.cisco.com
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: Run 'show ip int brief' command
+      cisco.ios.ios_command:
+        commands: 
+          - 'show ip int brief'
+      register: output
+
+    - name: Print output
+      debug:
+        msg: "{{ output.stdout_lines }}"
+

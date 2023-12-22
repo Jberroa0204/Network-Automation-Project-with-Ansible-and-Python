@@ -1,0 +1,16 @@
+- name: Ping a Network Device
+  hosts: sandbox-iosxe-latest-1.cisco.com
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: Test Ping to Specific IP
+      cisco.ios.ios_command:
+        commands:
+          - "ping 10.10.20.48"  # Replace with the IP you want to ping
+      register: ping_output
+
+    - name: Show Ping Result
+      debug:
+        var: ping_output
+
